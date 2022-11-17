@@ -1,7 +1,10 @@
 public interface LoggedIn_User {
-    void Logout();
-    void ViewUserDetails();
+    void Cart();
+
     void ShowEvent();
-    void SelectEvent();
+
     void BookEvent();
-}
+
+
+    }
+
