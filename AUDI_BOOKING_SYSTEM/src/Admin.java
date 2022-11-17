@@ -44,6 +44,7 @@ public class Admin extends Seats implements LoggedIn_Admin,conn{
             obe.number_of_seats_available=e.nextLine();
             Statement s=c.createStatement();
             s.executeUpdate("INSERT INTO `events_table`(eventname,ticketprice,eventdescription,numberofseatsavailable) VALUE ('"+obe.event_name+"','"+obe.ticket_price+"','"+obe.event_description+"','"+obe.number_of_seats_available+"')");
+            s.executeUpdate("INSERT INTO `table_user`(eventname,ticketprice,eventdescription) VALUE ('"+obe.event_name+"','"+obe.ticket_price+"','"+obe.event_description+"')");
             System.out.println("Event Successfully added");
         }catch(Exception e){
             System.out.println(e);
@@ -83,7 +84,9 @@ public class Admin extends Seats implements LoggedIn_Admin,conn{
 
                     Statement stmt = c.createStatement();
                     String query = "update  events_table set eventname='" + neweventname + "' where idno='" + idno + "'";
+                    String query2= "update  table_user set eventname='" + neweventname + "' where idno='" + idno + "'";
                     stmt.executeUpdate(query);
+                    stmt.executeUpdate(query2);
 
                 }
                 if(choi==2){
@@ -94,7 +97,9 @@ public class Admin extends Seats implements LoggedIn_Admin,conn{
                     }
                     Statement stmt=c.createStatement();
                     String query = "update  events_table set ticketprice='" + newticketprice + "' where idno='" + idno + "'";
+                    String query2="update  table_user set ticketprice='" + newticketprice + "' where idno='" + idno + "'";
                     stmt.executeUpdate(query);
+                    stmt.executeUpdate(query2);
 
                 }
                 if(choi==3){
@@ -105,7 +110,9 @@ public class Admin extends Seats implements LoggedIn_Admin,conn{
                     }
                     Statement stmt=c.createStatement();
                     String query = "update  events_table set eventdescription='" + neweventdescription + "' where idno='" + idno + "'";
+                    String query2="update  table_user set eventdescription='" + neweventdescription + "' where idno='" + idno + "'";
                     stmt.executeUpdate(query);
+                    stmt.executeUpdate(query2);
 
                 }
                 if(choi==4){
@@ -149,7 +156,9 @@ public class Admin extends Seats implements LoggedIn_Admin,conn{
             Connection c = (Connection) DriverManager.getConnection(url, uname, pass);
             Statement stmt=c.createStatement();
             String query="DELETE FROM `userdb`.`events_table` WHERE (`idno` = '"+did+"');";
+            String query2="DELETE FROM `userdb`.`events_table` WHERE (`idno` = '"+did+"');";
             stmt.executeUpdate(query);
+            stmt.executeUpdate(query2);
         }catch(Exception e){
             System.out.println(e);
         }
