@@ -17,8 +17,6 @@ public class Add_Events_Frame_GUI {
 	private JTextField textField_1;
 	private JLabel lblEnterTheEvent;
 	private JTextArea textArea;
-	private JLabel lblEnterTheNumber;
-	private JTextField textField_2;
 	private JButton btnNewButton_1;
 
 	/**
@@ -114,18 +112,6 @@ public class Add_Events_Frame_GUI {
 		springLayout.putConstraint(SpringLayout.EAST, textArea, -207, SpringLayout.EAST, frame.getContentPane());
 		frame.getContentPane().add(textArea);
 		
-		lblEnterTheNumber = new JLabel("Enter the number of seats available");
-		springLayout.putConstraint(SpringLayout.NORTH, lblEnterTheNumber, -10, SpringLayout.NORTH, lblEnterTheEvent);
-		springLayout.putConstraint(SpringLayout.SOUTH, lblEnterTheNumber, -10, SpringLayout.SOUTH, lblNewLabel);
-		springLayout.putConstraint(SpringLayout.EAST, lblEnterTheNumber, -10, SpringLayout.EAST, frame.getContentPane());
-		frame.getContentPane().add(lblEnterTheNumber);
-		
-		textField_2 = new JTextField();
-		springLayout.putConstraint(SpringLayout.NORTH, textField_2, 0, SpringLayout.NORTH, textField);
-		springLayout.putConstraint(SpringLayout.EAST, textField_2, -37, SpringLayout.EAST, frame.getContentPane());
-		frame.getContentPane().add(textField_2);
-		textField_2.setColumns(10);
-		
 		btnNewButton_1 = new JButton("Add Event");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -135,7 +121,7 @@ EventQueue.invokeLater(new Runnable() {
 					public void run() {
 						try {
 							Admin obb=new Admin();
-							obb.AddEvent(textField.getText(), textField_1.getText(), textArea.getText(), textField_2.getText());
+							obb.AddEvent(textField.getText(), textField_1.getText(), textArea.getText());
 							frame.dispose();
 							ViewEvents_Frame window = new ViewEvents_Frame();
 							window.frame.setVisible(true);

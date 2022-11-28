@@ -3,7 +3,7 @@ public interface LoggedIn_User {
 
     void ShowEvent();
 
-    void BookEvent();
+    void BookEvent(int a,int seatno);
 
 
     }

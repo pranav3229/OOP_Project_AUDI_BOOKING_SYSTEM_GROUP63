@@ -19,7 +19,6 @@ public class Edit_Event_Frame_GUI {
 	private JTextField textField;
 	private JTextField textField_1;
 	private JTextField textField_2;
-	private JTextField textField_3;
 
 	/**
 	 * Launch the application.
@@ -255,49 +254,6 @@ EventQueue.invokeLater(new Runnable() {
 		springLayout.putConstraint(SpringLayout.NORTH, lblNewLabel_5, 6, SpringLayout.SOUTH, lblNewLabel_2);
 		springLayout.putConstraint(SpringLayout.EAST, lblNewLabel_5, -322, SpringLayout.EAST, frame.getContentPane());
 		frame.getContentPane().add(lblNewLabel_5);
-		
-		JLabel lblNewLabel_6 = new JLabel("Enter the changed number of seats");
-		springLayout.putConstraint(SpringLayout.NORTH, lblNewLabel_6, 0, SpringLayout.NORTH, lblNewLabel_1);
-		springLayout.putConstraint(SpringLayout.WEST, lblNewLabel_6, 74, SpringLayout.EAST, lblNewLabel_4);
-		frame.getContentPane().add(lblNewLabel_6);
-		
-		textField_3 = new JTextField();
-		springLayout.putConstraint(SpringLayout.NORTH, textField_3, 0, SpringLayout.NORTH, textField_1);
-		springLayout.putConstraint(SpringLayout.WEST, textField_3, 102, SpringLayout.EAST, textArea_1);
-		frame.getContentPane().add(textField_3);
-		textField_3.setColumns(10);
-		
-		JButton btnNewButton_1_1_1_1_1 = new JButton("Submit");
-		btnNewButton_1_1_1_1_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				EventQueue.invokeLater(new Runnable() {
-					public void run() {
-						try {
-							obb.EditEvent(Integer.parseInt(textField.getText()),obb.setChoice(4),textField_3.getText());
-							frame.dispose();
-							
-							EventQueue.invokeLater(new Runnable() {
-								public void run() {
-									try {
-										ViewEvents_Frame window = new ViewEvents_Frame();
-										window.frame.setVisible(true);
-										System.out.println("Number of seats available changed");
-									} catch (Exception e) {
-										e.printStackTrace();
-									}
-								}
-							});
-							
-						} catch (Exception e) {
-//							e.printStackTrace();
-						}
-					}
-				});
-			}
-		});
-		springLayout.putConstraint(SpringLayout.NORTH, btnNewButton_1_1_1_1_1, 0, SpringLayout.NORTH, btnNewButton_1_1);
-		springLayout.putConstraint(SpringLayout.EAST, btnNewButton_1_1_1_1_1, 0, SpringLayout.EAST, lblNewLabel_2);
-		frame.getContentPane().add(btnNewButton_1_1_1_1_1);
 //		PrintStream printStream = new PrintStream(new CustomOutputStream(textArea));
 		System.setOut(printStream);
 		System.setErr(printStream);

@@ -5,6 +5,7 @@ import java.sql.*;
 
 public class Admin extends Seats implements LoggedIn_Admin,conn{
 	int choi=-111;
+    static HashMap<Integer,String> al=new HashMap<>();
 
     public void Logout(){
         System.out.println("Successfully logged out");
@@ -27,7 +28,7 @@ public class Admin extends Seats implements LoggedIn_Admin,conn{
     }
 
     @Override
-    public void AddEvent(String a,String b, String c, String d) {
+    public void AddEvent(String a,String b, String c) {
         try{
             Connection conn=null;
             conn=connection.connectDB();
@@ -41,8 +42,13 @@ public class Admin extends Seats implements LoggedIn_Admin,conn{
             obe.ticket_price=b;
             System.out.println("Enter the event description ");
             obe.event_description=c;
-            System.out.println("Enter the number of seats you want to have available for the audience");
-            obe.number_of_seats_available=d;
+//            System.out.println("Enter the number of seats you want to have available for the audience");
+            al.clear();
+            for(int i=1;i<=10;i++) {
+            	al.put(i,"Available");
+            }
+            obe.number_of_seats_available=al.toString();
+            
             Statement s=c1.createStatement();
             s.executeUpdate("INSERT INTO `events_table`(eventname,ticketprice,eventdescription,numberofseatsavailable) VALUE ('"+obe.event_name+"','"+obe.ticket_price+"','"+obe.event_description+"','"+obe.number_of_seats_available+"')");
             s.executeUpdate("INSERT INTO `table_user`(eventname,ticketprice,eventdescription) VALUE ('"+obe.event_name+"','"+obe.ticket_price+"','"+obe.event_description+"')");
