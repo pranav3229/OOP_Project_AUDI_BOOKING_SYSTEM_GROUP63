@@ -4,6 +4,7 @@ import java.util.*;
 import java.sql.*;
 
 public class Admin extends Seats implements LoggedIn_Admin,conn{
+	int choi=-111;
 
     public void Logout(){
         System.out.println("Successfully logged out");
@@ -26,23 +27,23 @@ public class Admin extends Seats implements LoggedIn_Admin,conn{
     }
 
     @Override
-    public void AddEvent() {
+    public void AddEvent(String a,String b, String c, String d) {
         try{
             Connection conn=null;
             conn=connection.connectDB();
             Class.forName(driver);
-            Connection c =(Connection) DriverManager.getConnection(url,uname,pass);
+            Connection c1 =(Connection) DriverManager.getConnection(url,uname,pass);
             Events obe=new Events();
             System.out.println("Enter the event name");
             Scanner e=new Scanner(System.in);
-            obe.event_name=e.nextLine();
+            obe.event_name=a;
             System.out.println("Enter the ticket price");
-            obe.ticket_price=e.nextLine();
+            obe.ticket_price=b;
             System.out.println("Enter the event description ");
-            obe.event_description=e.nextLine();
+            obe.event_description=c;
             System.out.println("Enter the number of seats you want to have available for the audience");
-            obe.number_of_seats_available=e.nextLine();
-            Statement s=c.createStatement();
+            obe.number_of_seats_available=d;
+            Statement s=c1.createStatement();
             s.executeUpdate("INSERT INTO `events_table`(eventname,ticketprice,eventdescription,numberofseatsavailable) VALUE ('"+obe.event_name+"','"+obe.ticket_price+"','"+obe.event_description+"','"+obe.number_of_seats_available+"')");
             s.executeUpdate("INSERT INTO `table_user`(eventname,ticketprice,eventdescription) VALUE ('"+obe.event_name+"','"+obe.ticket_price+"','"+obe.event_description+"')");
             System.out.println("Event Successfully added");
@@ -53,9 +54,9 @@ public class Admin extends Seats implements LoggedIn_Admin,conn{
     }
 
     @Override
-    public void EditEvent() {
-        int choi = -1;
-        while (choi != 0) {
+    public void EditEvent(int a, int choice1,String receive) {
+        
+        
 
         try {
 
@@ -64,22 +65,22 @@ public class Admin extends Seats implements LoggedIn_Admin,conn{
                 ViewEvents();
                 System.out.println("Enter the event id number of the event you want to edit or press 0 to go back");
                 Scanner id = new Scanner(System.in);
-                int idno = id.nextInt();
+                int idno = a;
                 Connection conn = null;
                 conn = connection.connectDB();
                 Class.forName(driver);
                 Connection c = (Connection) DriverManager.getConnection(url, uname, pass);
-                System.out.println("Press 1 if you want to edit the event name");
-                System.out.println("Press 2 if you want to edit the ticket price");
-                System.out.println("Press 3 if you want to edit the event description");
-                System.out.println("Press 4 if you want to edit the number of seats available ***Warning doing so once users have booked seats will trash all such entries");
-                System.out.println("Press 0 to go back");
-                choi = id.nextInt();
+//                System.out.println("Press 1 if you want to edit the event name");
+//                System.out.println("Press 2 if you want to edit the ticket price");
+//                System.out.println("Press 3 if you want to edit the event description");
+//                System.out.println("Press 4 if you want to edit the number of seats available ***Warning doing so once users have booked seats will trash all such entries");
+//                System.out.println("Press 0 to go back");
+               choi=choice1;
                 if (choi == 1) {
                     String neweventname = "";
-                    System.out.println("Enter the changed event name");
+//                    System.out.println("Enter the changed event name");
                     while(neweventname.equals("")==true) {
-                        neweventname = id.nextLine();
+                        neweventname = receive;
                     }
 
                     Statement stmt = c.createStatement();
@@ -91,9 +92,9 @@ public class Admin extends Seats implements LoggedIn_Admin,conn{
                 }
                 if(choi==2){
                     String newticketprice="";
-                    System.out.println("Enter the changed ticket price");
+//                    System.out.println("Enter the changed ticket price");
                     while(newticketprice.equals("")==true){
-                        newticketprice=id.nextLine();
+                        newticketprice=receive;
                     }
                     Statement stmt=c.createStatement();
                     String query = "update  events_table set ticketprice='" + newticketprice + "' where idno='" + idno + "'";
@@ -104,9 +105,9 @@ public class Admin extends Seats implements LoggedIn_Admin,conn{
                 }
                 if(choi==3){
                     String neweventdescription="";
-                    System.out.println("Enter the new event description");
+//                    System.out.println("Enter the new event description");
                     while(neweventdescription.equals("")==true){
-                        neweventdescription=id.nextLine();
+                        neweventdescription=receive;
                     }
                     Statement stmt=c.createStatement();
                     String query = "update  events_table set eventdescription='" + neweventdescription + "' where idno='" + idno + "'";
@@ -117,23 +118,23 @@ public class Admin extends Seats implements LoggedIn_Admin,conn{
                 }
                 if(choi==4){
                     String newseatsavailable="";
-                    System.out.println("Enter the new number of seats available");
+//                    System.out.println("Enter the new number of seats available");
                     while(newseatsavailable.equals("")==true){
-                        newseatsavailable=id.nextLine();
+                        newseatsavailable=receive;
                     }
                     Statement stmt=c.createStatement();
                     String query = "update  events_table set numberofseatsavailable='" + newseatsavailable + "' where idno='" + idno + "'";
                     stmt.executeUpdate(query);
 
                 }
-                else {
-                    if(choi==0){
-                        break;
-                    }
-                    else {
-                        System.out.println(("Invalid choice"));
-                    }
-                }
+//                else {
+//                    if(choi==0){
+//                        break;
+//                    }
+//                    else {
+//                        System.out.println(("Invalid choice"));
+//                    }
+//                }
 
             }catch(Exception e){
                 System.out.println(e);
@@ -141,15 +142,15 @@ public class Admin extends Seats implements LoggedIn_Admin,conn{
 
 
         }
-    }
+    
 
     @Override
-    public void DeleteEvent() {
+    public void DeleteEvent(int a) {
         try {
             ViewEvents();
             System.out.println("Enter the id number of the event you want to delete");
             Scanner id = new Scanner(System.in);
-            int did=id.nextInt();
+            int did=a;
             Connection conn = null;
             conn = connection.connectDB();
             Class.forName(driver);
@@ -175,53 +176,58 @@ public class Admin extends Seats implements LoggedIn_Admin,conn{
     public void TrackRevenue() {
 
     }
-    public void AdminFunctions(){
-        int choice=-1;
-        while(choice!=1) {
-            System.out.println("Press 1 to Logout");
-            System.out.println("Press 2 to View Events");
-            System.out.println("Press 3 to Add Events");
-            System.out.println("Press 4 to Edit Events");
-            System.out.println("Press 5 to Delete Events");
-            System.out.println("Press 6 to Track Seats");
-            System.out.println("Press 7 to Track Revenue");
-            Scanner i = new Scanner(System.in);
-
-            choice = i.nextInt();
-            if (choice == 1) {
-                System.out.println("You have Successfully Loggedout");
-            }
-            if(choice==2){
-                ViewEvents();
-                continue;
-
-            }
-            if(choice==3){
-                AddEvent();
-                ViewEvents();
-                continue;
-
-            }
-            if(choice==4){
-                EditEvent();
-                ViewEvents();
-                continue;
-            }
-            if(choice==5){
-                DeleteEvent();
-                ViewEvents();
-                continue;
-            }
-
-            else{
-                System.out.println("Invalid choice");
-                continue;
-            }
-
-
-        }
-
+    public int setChoice(int choice) {
+    	return choice;
+    	
     }
+    
+//    public void AdminFunctions(){
+//        int choice=-1;
+//        while(choice!=1) {
+//            System.out.println("Press 1 to Logout");
+//            System.out.println("Press 2 to View Events");
+//            System.out.println("Press 3 to Add Events");
+//            System.out.println("Press 4 to Edit Events");
+//            System.out.println("Press 5 to Delete Events");
+//            System.out.println("Press 6 to Track Seats");
+//            System.out.println("Press 7 to Track Revenue");
+//            Scanner i = new Scanner(System.in);
+//
+//            choice = i.nextInt();
+//            if (choice == 1) {
+//                System.out.println("You have Successfully Loggedout");
+//            }
+//            if(choice==2){
+//                ViewEvents();
+//                continue;
+//
+//            }
+//            if(choice==3){
+//                AddEvent(String a, String b, String c, String d);
+//                ViewEvents();
+//                continue;
+//
+//            }
+//            if(choice==4){
+//                EditEvent();
+//                ViewEvents();
+//                continue;
+//            }
+//            if(choice==5){
+//                DeleteEvent();
+//                ViewEvents();
+//                continue;
+//            }
+//
+//            else{
+//                System.out.println("Invalid choice");
+//                continue;
+//            }
+//
+//
+//        }
+//
+//    }
 
 
 }
