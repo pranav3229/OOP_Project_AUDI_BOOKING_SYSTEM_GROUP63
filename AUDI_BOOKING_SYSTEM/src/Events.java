@@ -6,5 +6,6 @@ public class Events extends Login {
     String event_description;
 
     String number_of_seats_available;
+    String seatsbooked;
     String event_revenue;
    }
