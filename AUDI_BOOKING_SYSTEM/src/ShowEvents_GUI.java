@@ -5,11 +5,7 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.io.PrintStream;
 
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JTextArea;
-import javax.swing.SpringLayout;
-import javax.swing.JScrollPane;
+import javax.swing.*;
 
 public class ShowEvents_GUI {
 
@@ -19,7 +15,7 @@ public class ShowEvents_GUI {
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
+		SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
 				try {
 					ShowEvents_GUI window = new ShowEvents_GUI();
@@ -73,7 +69,7 @@ public class ShowEvents_GUI {
 		JButton btnNewButton = new JButton("back");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				EventQueue.invokeLater(new Runnable() {
+				SwingUtilities.invokeLater(new Runnable() {
 					public void run() {
 						try {
 							frame.dispose();

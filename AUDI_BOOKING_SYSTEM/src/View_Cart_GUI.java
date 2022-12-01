@@ -1,13 +1,13 @@
 import java.awt.EventQueue;
-import java.io.IOException;
-import java.io.OutputStream;
-import java.io.PrintStream;
 
 import javax.swing.*;
 import java.awt.event.ActionListener;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.io.PrintStream;
 import java.awt.event.ActionEvent;
 
-public class ViewEvents_Frame {
+public class View_Cart_GUI {
 
 	JFrame frame;
 
@@ -15,10 +15,10 @@ public class ViewEvents_Frame {
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
+		SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					ViewEvents_Frame window = new ViewEvents_Frame();
+					View_Cart_GUI window = new View_Cart_GUI();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -30,7 +30,7 @@ public class ViewEvents_Frame {
 	/**
 	 * Create the application.
 	 */
-	public ViewEvents_Frame() {
+	public View_Cart_GUI() {
 		initialize();
 	}
 
@@ -39,7 +39,7 @@ public class ViewEvents_Frame {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 1228, 709);
+		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		SpringLayout springLayout = new SpringLayout();
 		frame.getContentPane().setLayout(springLayout);
@@ -57,24 +57,15 @@ public class ViewEvents_Frame {
 		        textArea.setCaretPosition(textArea.getDocument().getLength());
 		    }
 		}
-		JTextArea textArea_1 = new JTextArea();
-		springLayout.putConstraint(SpringLayout.NORTH, textArea_1, 115, SpringLayout.NORTH, frame.getContentPane());
-		springLayout.putConstraint(SpringLayout.WEST, textArea_1, 128, SpringLayout.WEST, frame.getContentPane());
-		springLayout.putConstraint(SpringLayout.SOUTH, textArea_1, -65, SpringLayout.SOUTH, frame.getContentPane());
-		springLayout.putConstraint(SpringLayout.EAST, textArea_1, -70, SpringLayout.EAST, frame.getContentPane());
-		frame.getContentPane().add(textArea_1);
-		Admin obb=new Admin();
-		PrintStream printStream = new PrintStream(new CustomOutputStream(textArea_1));
 		
-		JButton btnNewButton = new JButton("back");
+		JButton btnNewButton = new JButton("Back");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				SwingUtilities.invokeLater(new Runnable() {
-					
 					public void run() {
 						try {
 							frame.dispose();
-							LoggedInAdmin_gui window = new LoggedInAdmin_gui();
+							LoggedInUserWindow_gui window = new LoggedInUserWindow_gui();
 							window.frame.setVisible(true);
 						} catch (Exception e) {
 							e.printStackTrace();
@@ -83,16 +74,23 @@ public class ViewEvents_Frame {
 				});
 			}
 		});
-		springLayout.putConstraint(SpringLayout.NORTH, btnNewButton, 25, SpringLayout.NORTH, frame.getContentPane());
-		springLayout.putConstraint(SpringLayout.WEST, btnNewButton, 27, SpringLayout.WEST, frame.getContentPane());
-		springLayout.putConstraint(SpringLayout.SOUTH, btnNewButton, 69, SpringLayout.NORTH, frame.getContentPane());
-		springLayout.putConstraint(SpringLayout.EAST, btnNewButton, 120, SpringLayout.WEST, frame.getContentPane());
+		springLayout.putConstraint(SpringLayout.NORTH, btnNewButton, 10, SpringLayout.NORTH, frame.getContentPane());
+		springLayout.putConstraint(SpringLayout.WEST, btnNewButton, 10, SpringLayout.WEST, frame.getContentPane());
+		springLayout.putConstraint(SpringLayout.SOUTH, btnNewButton, 41, SpringLayout.NORTH, frame.getContentPane());
+		springLayout.putConstraint(SpringLayout.EAST, btnNewButton, 74, SpringLayout.WEST, frame.getContentPane());
 		frame.getContentPane().add(btnNewButton);
+		
+		JTextArea textArea = new JTextArea();
+		springLayout.putConstraint(SpringLayout.NORTH, textArea, 75, SpringLayout.NORTH, frame.getContentPane());
+		springLayout.putConstraint(SpringLayout.WEST, textArea, 112, SpringLayout.WEST, frame.getContentPane());
+		springLayout.putConstraint(SpringLayout.SOUTH, textArea, 165, SpringLayout.NORTH, frame.getContentPane());
+		springLayout.putConstraint(SpringLayout.EAST, textArea, -82, SpringLayout.EAST, frame.getContentPane());
+		textArea.setEditable(false);
+		frame.getContentPane().add(textArea);
+		PrintStream printStream = new PrintStream(new CustomOutputStream(textArea));
 		System.setOut(printStream);
 		System.setErr(printStream);
-		obb.ViewEvents();
-	
-	
-		
+		Customer obb=new Customer();
+		obb.Cart();
 	}
 }

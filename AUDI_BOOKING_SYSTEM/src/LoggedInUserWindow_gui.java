@@ -1,8 +1,6 @@
 import java.awt.EventQueue;
 
-import javax.swing.JFrame;
-import javax.swing.SpringLayout;
-import javax.swing.JButton;
+import javax.swing.*;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
@@ -14,7 +12,7 @@ public class LoggedInUserWindow_gui {
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
+		SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
 				try {
 					LoggedInUserWindow_gui window = new LoggedInUserWindow_gui();
@@ -46,7 +44,7 @@ public class LoggedInUserWindow_gui {
 		JButton btnNewButton = new JButton("Logout");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				EventQueue.invokeLater(new Runnable() {
+				SwingUtilities.invokeLater(new Runnable() {
 					public void run() {
 						try {
 							frame.dispose();
@@ -66,9 +64,12 @@ public class LoggedInUserWindow_gui {
 		frame.getContentPane().add(btnNewButton);
 		
 		JButton btnNewButton_1 = new JButton("Show Events");
+		springLayout.putConstraint(SpringLayout.NORTH, btnNewButton_1, 114, SpringLayout.NORTH, frame.getContentPane());
+		springLayout.putConstraint(SpringLayout.WEST, btnNewButton_1, 364, SpringLayout.WEST, frame.getContentPane());
+		springLayout.putConstraint(SpringLayout.EAST, btnNewButton_1, -492, SpringLayout.EAST, frame.getContentPane());
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				EventQueue.invokeLater(new Runnable() {
+				SwingUtilities.invokeLater(new Runnable() {
 					public void run() {
 						try {
 							frame.dispose();
@@ -82,14 +83,16 @@ public class LoggedInUserWindow_gui {
 				
 			}
 		});
-		springLayout.putConstraint(SpringLayout.NORTH, btnNewButton_1, 114, SpringLayout.NORTH, frame.getContentPane());
-		springLayout.putConstraint(SpringLayout.WEST, btnNewButton_1, 364, SpringLayout.WEST, frame.getContentPane());
 		frame.getContentPane().add(btnNewButton_1);
 		
 		JButton btnNewButton_1_1 = new JButton("Book Event");
+		springLayout.putConstraint(SpringLayout.SOUTH, btnNewButton_1, -30, SpringLayout.NORTH, btnNewButton_1_1);
+		springLayout.putConstraint(SpringLayout.NORTH, btnNewButton_1_1, 180, SpringLayout.NORTH, frame.getContentPane());
+		springLayout.putConstraint(SpringLayout.WEST, btnNewButton_1_1, 0, SpringLayout.WEST, btnNewButton_1);
+		springLayout.putConstraint(SpringLayout.EAST, btnNewButton_1_1, -492, SpringLayout.EAST, frame.getContentPane());
 		btnNewButton_1_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				EventQueue.invokeLater(new Runnable() {
+				SwingUtilities.invokeLater(new Runnable() {
 					public void run() {
 						try {
 							frame.dispose();
@@ -102,13 +105,30 @@ public class LoggedInUserWindow_gui {
 				});
 			}
 		});
-		springLayout.putConstraint(SpringLayout.NORTH, btnNewButton_1_1, 190, SpringLayout.NORTH, frame.getContentPane());
-		springLayout.putConstraint(SpringLayout.WEST, btnNewButton_1_1, 364, SpringLayout.WEST, frame.getContentPane());
-		springLayout.putConstraint(SpringLayout.SOUTH, btnNewButton_1_1, -227, SpringLayout.SOUTH, frame.getContentPane());
-		springLayout.putConstraint(SpringLayout.EAST, btnNewButton_1_1, -492, SpringLayout.EAST, frame.getContentPane());
-		springLayout.putConstraint(SpringLayout.SOUTH, btnNewButton_1, -40, SpringLayout.NORTH, btnNewButton_1_1);
-		springLayout.putConstraint(SpringLayout.EAST, btnNewButton_1, 0, SpringLayout.EAST, btnNewButton_1_1);
 		frame.getContentPane().add(btnNewButton_1_1);
+		
+		JButton btnNewButton_2 = new JButton("View Cart");
+		btnNewButton_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				SwingUtilities.invokeLater(new Runnable() {
+					public void run() {
+						try {
+							frame.dispose();
+							View_Cart_GUI window = new View_Cart_GUI();
+							window.frame.setVisible(true);
+						} catch (Exception e) {
+							e.printStackTrace();
+						}
+					}
+				});
+			}
+		});
+		springLayout.putConstraint(SpringLayout.NORTH, btnNewButton_2, 244, SpringLayout.NORTH, frame.getContentPane());
+		springLayout.putConstraint(SpringLayout.SOUTH, btnNewButton_2, -167, SpringLayout.SOUTH, frame.getContentPane());
+		springLayout.putConstraint(SpringLayout.SOUTH, btnNewButton_1_1, -28, SpringLayout.NORTH, btnNewButton_2);
+		springLayout.putConstraint(SpringLayout.WEST, btnNewButton_2, 0, SpringLayout.WEST, btnNewButton_1);
+		springLayout.putConstraint(SpringLayout.EAST, btnNewButton_2, 0, SpringLayout.EAST, btnNewButton_1);
+		frame.getContentPane().add(btnNewButton_2);
 	}
 
 }

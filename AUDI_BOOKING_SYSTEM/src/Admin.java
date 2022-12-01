@@ -3,9 +3,15 @@ import imported_classes.DBTablePrinter;
 import java.util.*;
 import java.sql.*;
 
-public class Admin extends Seats implements LoggedIn_Admin,conn{
+public class Admin extends Events implements LoggedIn_Admin,conn{
 	int choi=-111;
-    static HashMap<Integer,String> al=new HashMap<>();
+//    HashMap<Integer,String> al=new HashMap<>();
+//    static HashMap<Integer,String> al1=new HashMap<>();
+//    int al[]=new int[10];
+	ArrayList<Integer> al=new ArrayList<>();
+    static double revenue;
+    
+    
 
     public void Logout(){
         System.out.println("Successfully logged out");
@@ -28,7 +34,7 @@ public class Admin extends Seats implements LoggedIn_Admin,conn{
     }
 
     @Override
-    public void AddEvent(String a,String b, String c) {
+    public void AddEvent(String a,String b, String c,String d) {
         try{
             Connection conn=null;
             conn=connection.connectDB();
@@ -43,14 +49,19 @@ public class Admin extends Seats implements LoggedIn_Admin,conn{
             System.out.println("Enter the event description ");
             obe.event_description=c;
 //            System.out.println("Enter the number of seats you want to have available for the audience");
-            al.clear();
-            for(int i=1;i<=10;i++) {
-            	al.put(i,"Available");
+//            al.clear();
+           
+            for(int i=0;i<Integer.parseInt(d)-1;i++) {
+            	al.add(i+1);
+            	System.out.println(al.toString());
+            	
             }
             obe.number_of_seats_available=al.toString();
+            revenue=0;
+            int noseatsbooked=0;
             
             Statement s=c1.createStatement();
-            s.executeUpdate("INSERT INTO `events_table`(eventname,ticketprice,eventdescription,numberofseatsavailable) VALUE ('"+obe.event_name+"','"+obe.ticket_price+"','"+obe.event_description+"','"+obe.number_of_seats_available+"')");
+            s.executeUpdate("INSERT INTO `events_table`(eventname,ticketprice,eventdescription,numberofseatsavailable,eventrevenue,numberofseatsbooked) VALUE ('"+obe.event_name+"','"+obe.ticket_price+"','"+obe.event_description+"','"+obe.number_of_seats_available+"','"+revenue+"','"+noseatsbooked+"')");
             s.executeUpdate("INSERT INTO `table_user`(eventname,ticketprice,eventdescription) VALUE ('"+obe.event_name+"','"+obe.ticket_price+"','"+obe.event_description+"')");
             System.out.println("Event Successfully added");
         }catch(Exception e){
@@ -173,13 +184,46 @@ public class Admin extends Seats implements LoggedIn_Admin,conn{
 
     }
 
-    @Override
-    public void TrackSeats() {
+//    @Override
+//    public void TrackSeats() {
+//
+//    }
 
-    }
-
     @Override
-    public void TrackRevenue() {
+    public void TrackRevenue(int a) {
+        try{
+        	String s1="";
+        	String s2="";
+        	String s3="";
+            Connection conn = null;
+            conn = connection.connectDB();
+            Class.forName(driver);
+            Connection c = (Connection) DriverManager.getConnection(url, uname, pass);
+            String sql= "SELECT * FROM events_table ";
+            PreparedStatement ps=conn.prepareStatement(sql);
+            ResultSet rs=ps.executeQuery(sql);
+            while(rs.next()) {
+            	if(Integer.parseInt(rs.getString("idno"))==a) {
+            		s1=rs.getString("eventrevenue");
+            		s2=rs.getString("numberofseatsbooked");
+            		s3=rs.getString("ticketprice");
+            	}
+            }
+            double d1=Double.parseDouble(s1);
+            double d2=Double.parseDouble(s2);
+            double d3=Double.parseDouble(s3);
+            d1=d2*d3;
+            String str=Double.toString(d1);
+            Statement stmt = c.createStatement();
+            String query = "update  events_table set eventrevenue='" + str + "' where idno='" + a + "'";
+            stmt.executeUpdate(query);
+            
+        }catch(Exception E){
+            System.out.println(E);
+        }
+
+
+
 
     }
     public int setChoice(int choice) {

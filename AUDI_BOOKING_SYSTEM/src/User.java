@@ -1,7 +1,7 @@
 import java.util.*;
 class User{
     String name;
-    String phone_number;
+   String phone_number;
     String email;
     String userID;
     String password;

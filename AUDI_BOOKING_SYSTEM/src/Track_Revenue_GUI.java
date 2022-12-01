@@ -7,7 +7,7 @@ import java.io.OutputStream;
 import java.io.PrintStream;
 import java.awt.event.ActionEvent;
 
-public class Delete_Events_Frame_GUI {
+public class Track_Revenue_GUI {
 
 	JFrame frame;
 	private JTextField textField;
@@ -19,7 +19,7 @@ public class Delete_Events_Frame_GUI {
 		SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Delete_Events_Frame_GUI window = new Delete_Events_Frame_GUI();
+					Track_Revenue_GUI window = new Track_Revenue_GUI();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -31,7 +31,7 @@ public class Delete_Events_Frame_GUI {
 	/**
 	 * Create the application.
 	 */
-	public Delete_Events_Frame_GUI() {
+	public Track_Revenue_GUI() {
 		initialize();
 	}
 
@@ -40,11 +40,10 @@ public class Delete_Events_Frame_GUI {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 1051, 490);
+		frame.setBounds(100, 100, 1368, 762);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		SpringLayout springLayout = new SpringLayout();
 		frame.getContentPane().setLayout(springLayout);
-		Admin obb=new Admin();
 		class CustomOutputStream extends OutputStream {
 		    private JTextArea textArea;
 		    public CustomOutputStream(JTextArea textArea) {
@@ -63,11 +62,12 @@ public class Delete_Events_Frame_GUI {
 		JButton btnNewButton = new JButton("Back");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				SwingUtilities.invokeLater(new Runnable() {
+SwingUtilities.invokeLater(new Runnable() {
+					
 					public void run() {
 						try {
 							frame.dispose();
-							gui_audi window = new gui_audi();
+							LoggedInAdmin_gui window = new LoggedInAdmin_gui();
 							window.frame.setVisible(true);
 						} catch (Exception e) {
 							e.printStackTrace();
@@ -76,39 +76,39 @@ public class Delete_Events_Frame_GUI {
 				});
 			}
 		});
-		
-		springLayout.putConstraint(SpringLayout.NORTH, btnNewButton, 29, SpringLayout.NORTH, frame.getContentPane());
-		springLayout.putConstraint(SpringLayout.WEST, btnNewButton, 22, SpringLayout.WEST, frame.getContentPane());
-		springLayout.putConstraint(SpringLayout.SOUTH, btnNewButton, 67, SpringLayout.NORTH, frame.getContentPane());
-		springLayout.putConstraint(SpringLayout.EAST, btnNewButton, 89, SpringLayout.WEST, frame.getContentPane());
+		springLayout.putConstraint(SpringLayout.NORTH, btnNewButton, 40, SpringLayout.NORTH, frame.getContentPane());
+		springLayout.putConstraint(SpringLayout.WEST, btnNewButton, 32, SpringLayout.WEST, frame.getContentPane());
+		springLayout.putConstraint(SpringLayout.SOUTH, btnNewButton, 77, SpringLayout.NORTH, frame.getContentPane());
+		springLayout.putConstraint(SpringLayout.EAST, btnNewButton, 103, SpringLayout.WEST, frame.getContentPane());
 		frame.getContentPane().add(btnNewButton);
 		
 		JTextArea textArea = new JTextArea();
-		springLayout.putConstraint(SpringLayout.NORTH, textArea, 29, SpringLayout.NORTH, frame.getContentPane());
-		springLayout.putConstraint(SpringLayout.WEST, textArea, 54, SpringLayout.EAST, btnNewButton);
-		springLayout.putConstraint(SpringLayout.SOUTH, textArea, 268, SpringLayout.NORTH, frame.getContentPane());
-		springLayout.putConstraint(SpringLayout.EAST, textArea, 830, SpringLayout.EAST, btnNewButton);
+		springLayout.putConstraint(SpringLayout.NORTH, textArea, 61, SpringLayout.NORTH, frame.getContentPane());
+		springLayout.putConstraint(SpringLayout.WEST, textArea, 13, SpringLayout.EAST, btnNewButton);
+		springLayout.putConstraint(SpringLayout.SOUTH, textArea, 374, SpringLayout.NORTH, frame.getContentPane());
+		springLayout.putConstraint(SpringLayout.EAST, textArea, -142, SpringLayout.EAST, frame.getContentPane());
 		frame.getContentPane().add(textArea);
 		
-		JLabel lblNewLabel = new JLabel("Enter the id number of the event you want to delete");
-		springLayout.putConstraint(SpringLayout.WEST, lblNewLabel, 46, SpringLayout.WEST, frame.getContentPane());
-		springLayout.putConstraint(SpringLayout.SOUTH, lblNewLabel, -103, SpringLayout.SOUTH, frame.getContentPane());
+		JLabel lblNewLabel = new JLabel("Enter the idno for which you want to track the revenue");
+		springLayout.putConstraint(SpringLayout.NORTH, lblNewLabel, 80, SpringLayout.SOUTH, textArea);
+		springLayout.putConstraint(SpringLayout.WEST, lblNewLabel, 58, SpringLayout.WEST, frame.getContentPane());
 		frame.getContentPane().add(lblNewLabel);
 		
 		textField = new JTextField();
-		springLayout.putConstraint(SpringLayout.WEST, textField, 81, SpringLayout.EAST, lblNewLabel);
-		springLayout.putConstraint(SpringLayout.SOUTH, textField, 0, SpringLayout.SOUTH, lblNewLabel);
+		springLayout.putConstraint(SpringLayout.NORTH, textField, 0, SpringLayout.NORTH, lblNewLabel);
+		springLayout.putConstraint(SpringLayout.WEST, textField, 62, SpringLayout.EAST, lblNewLabel);
 		frame.getContentPane().add(textField);
 		textField.setColumns(10);
 		
 		JButton btnNewButton_1 = new JButton("Submit");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				Admin ob=new Admin();
+				ob.TrackRevenue(Integer.parseInt(textField.getText()));
 				SwingUtilities.invokeLater(new Runnable() {
 					public void run() {
 						try {
 							frame.dispose();
-							obb.DeleteEvent(Integer.parseInt(textField.getText()));
 							ViewEvents_Frame window = new ViewEvents_Frame();
 							window.frame.setVisible(true);
 						} catch (Exception e) {
@@ -118,13 +118,17 @@ public class Delete_Events_Frame_GUI {
 				});
 			}
 		});
-		springLayout.putConstraint(SpringLayout.NORTH, btnNewButton_1, 0, SpringLayout.NORTH, textField);
-		springLayout.putConstraint(SpringLayout.WEST, btnNewButton_1, 75, SpringLayout.EAST, textField);
+		springLayout.putConstraint(SpringLayout.NORTH, btnNewButton_1, 0, SpringLayout.NORTH, lblNewLabel);
+		springLayout.putConstraint(SpringLayout.WEST, btnNewButton_1, 102, SpringLayout.EAST, textField);
+		springLayout.putConstraint(SpringLayout.SOUTH, btnNewButton_1, 29, SpringLayout.NORTH, lblNewLabel);
+		springLayout.putConstraint(SpringLayout.EAST, btnNewButton_1, 189, SpringLayout.EAST, textField);
 		frame.getContentPane().add(btnNewButton_1);
 		PrintStream printStream = new PrintStream(new CustomOutputStream(textArea));
+		Admin obb=new Admin();
 		System.setOut(printStream);
 		System.setErr(printStream);
 		obb.ViewEvents();
+				
 	}
 
 }

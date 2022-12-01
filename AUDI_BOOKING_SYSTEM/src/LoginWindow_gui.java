@@ -1,11 +1,6 @@
 import java.awt.EventQueue;
 
-import javax.swing.JFrame;
-import javax.swing.SpringLayout;
-import javax.swing.JLabel;
-import javax.swing.JTextField;
-import javax.swing.JPasswordField;
-import javax.swing.JButton;
+import javax.swing.*;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
@@ -20,7 +15,7 @@ public class LoginWindow_gui {
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
+		SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
 				try {
 					LoginWindow_gui window = new LoginWindow_gui();
@@ -83,7 +78,7 @@ public class LoginWindow_gui {
 				if(textinput.equals("admin_admin")&&passwordinput.equals("takelite123")){
                     System.out.println("Logged in as admin");
                     frame.dispose();
-    				EventQueue.invokeLater(new Runnable() {
+    				SwingUtilities.invokeLater(new Runnable() {
     					public void run() {
     						try {
     							LoggedInAdmin_gui window = new LoggedInAdmin_gui();
@@ -99,7 +94,7 @@ public class LoginWindow_gui {
 				{
 					if(obb.login(textinput, passwordinput)==69) {
 					frame.dispose();
-					EventQueue.invokeLater(new Runnable() {
+					SwingUtilities.invokeLater(new Runnable() {
 						public void run() {
 							try {
 								LoggedInUserWindow_gui window = new LoggedInUserWindow_gui();

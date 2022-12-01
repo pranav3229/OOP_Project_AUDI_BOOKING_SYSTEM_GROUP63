@@ -1,11 +1,6 @@
 import java.awt.EventQueue;
 
-import javax.swing.JFrame;
-import javax.swing.SpringLayout;
-import javax.swing.JButton;
-import javax.swing.JTextArea;
-import javax.swing.JLabel;
-import javax.swing.JTextField;
+import javax.swing.*;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
@@ -18,12 +13,14 @@ public class Add_Events_Frame_GUI {
 	private JLabel lblEnterTheEvent;
 	private JTextArea textArea;
 	private JButton btnNewButton_1;
+	private JLabel lblNewLabel_1;
+	private JTextField textField_2;
 
 	/**
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
+		SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
 				try {
 					Add_Events_Frame_GUI window = new Add_Events_Frame_GUI();
@@ -47,7 +44,7 @@ public class Add_Events_Frame_GUI {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 827, 456);
+		frame.setBounds(100, 100, 1066, 456);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		SpringLayout springLayout = new SpringLayout();
 		frame.getContentPane().setLayout(springLayout);
@@ -55,7 +52,7 @@ public class Add_Events_Frame_GUI {
 		JButton btnNewButton = new JButton("Back");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-	EventQueue.invokeLater(new Runnable() {
+	SwingUtilities.invokeLater(new Runnable() {
 					
 					public void run() {
 						try {
@@ -116,12 +113,12 @@ public class Add_Events_Frame_GUI {
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
-EventQueue.invokeLater(new Runnable() {
+SwingUtilities.invokeLater(new Runnable() {
 					
 					public void run() {
 						try {
 							Admin obb=new Admin();
-							obb.AddEvent(textField.getText(), textField_1.getText(), textArea.getText());
+							obb.AddEvent(textField.getText(), textField_1.getText(), textArea.getText(),textField_2.getText());
 							frame.dispose();
 							ViewEvents_Frame window = new ViewEvents_Frame();
 							window.frame.setVisible(true);
@@ -137,5 +134,16 @@ EventQueue.invokeLater(new Runnable() {
 		springLayout.putConstraint(SpringLayout.SOUTH, btnNewButton_1, -66, SpringLayout.SOUTH, frame.getContentPane());
 		springLayout.putConstraint(SpringLayout.EAST, btnNewButton_1, -383, SpringLayout.EAST, frame.getContentPane());
 		frame.getContentPane().add(btnNewButton_1);
+		
+		lblNewLabel_1 = new JLabel("Enter total number of seats present");
+		springLayout.putConstraint(SpringLayout.NORTH, lblNewLabel_1, 0, SpringLayout.NORTH, lblEnterTheEvent);
+		springLayout.putConstraint(SpringLayout.EAST, lblNewLabel_1, -10, SpringLayout.EAST, frame.getContentPane());
+		frame.getContentPane().add(lblNewLabel_1);
+		
+		textField_2 = new JTextField();
+		springLayout.putConstraint(SpringLayout.NORTH, textField_2, 0, SpringLayout.NORTH, textArea);
+		springLayout.putConstraint(SpringLayout.EAST, textField_2, -25, SpringLayout.EAST, frame.getContentPane());
+		frame.getContentPane().add(textField_2);
+		textField_2.setColumns(10);
 	}
 }

@@ -25,7 +25,7 @@ public class Login extends User implements conn {
             Class.forName(driver);
             Connection c1=(Connection) DriverManager.getConnection(url,uname,pass);
             Statement s=c1.createStatement();
-            s.executeUpdate("INSERT INTO `users`(name,phonenumber,email,userid,password) VALUE ('"+ob.name+"','"+ob.phone_number+"','"+ob.email+"','"+ob.userID+"','"+ob.password+"')");
+            s.executeUpdate("INSERT INTO `ifusers`(name,phonenumber,email,userid,password) VALUE ('"+ob.name+"','"+ob.phone_number+"','"+ob.email+"','"+ob.userID+"','"+ob.password+"')");
         }
         catch (Exception e1) {
             System.out.println(e1);
@@ -39,7 +39,7 @@ public class Login extends User implements conn {
         System.out.println("Enter the password");
         ob.password=b;
         Connection conn=null;
-        String sql= "SELECT * FROM users WHERE userID = ? AND password = ?";
+        String sql= "SELECT * FROM ifusers WHERE userID = ? AND password = ?";
         PreparedStatement ps=null;
         conn=connection.connectDB();
         try{
@@ -52,6 +52,8 @@ public class Login extends User implements conn {
             if (rs.next()) {
                 String username1 = rs.getString("userid");
                 String password1 = rs.getString("password");
+                Customer obb=new Customer();
+                obb.signedinas(username1);
                 if(username1.equals(ob.userID)&&password1.equals(ob.password)){
                     System.out.println("Logged in successfully");
 //                    if(ob.userID.equals("admin_admin")&&ob.password.equals("takelite123")){
