@@ -3,7 +3,7 @@ import java.sql.PreparedStatement;
 import java.util.*;
 import java.sql.*;
 public class Login extends User implements conn {
-    void CreateAccount(String a,String b, String c, String d, String e){
+    synchronized void  CreateAccount(String a,String b, String c, String d, String e) throws InterruptedException {
         User ob=new User();
         System.out.println("Enter your name");
         Scanner in =new Scanner(System.in);
@@ -30,6 +30,7 @@ public class Login extends User implements conn {
         catch (Exception e1) {
             System.out.println(e1);
         }
+        wait();
     }
     int login(String a,String b){
         System.out.println("Enter your username");

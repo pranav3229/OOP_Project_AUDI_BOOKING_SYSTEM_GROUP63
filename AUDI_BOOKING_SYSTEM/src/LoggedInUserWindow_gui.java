@@ -11,18 +11,18 @@ public class LoggedInUserWindow_gui {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		SwingUtilities.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					LoggedInUserWindow_gui window = new LoggedInUserWindow_gui();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+//	public static void main(String[] args) {
+//		SwingUtilities.invokeLater(new Runnable() {
+//			public void run() {
+//				try {
+//					LoggedInUserWindow_gui window = new LoggedInUserWindow_gui();
+//					window.frame.setVisible(true);
+//				} catch (Exception e) {
+//					e.printStackTrace();
+//				}
+//			}
+//		});
+//	}
 
 	/**
 	 * Create the application.

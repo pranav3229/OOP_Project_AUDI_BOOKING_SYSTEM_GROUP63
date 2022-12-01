@@ -11,11 +11,9 @@ public class Admin extends Events implements LoggedIn_Admin,conn{
 	ArrayList<Integer> al=new ArrayList<>();
     static double revenue;
     
-    
 
-    public void Logout(){
-        System.out.println("Successfully logged out");
-    }
+
+
 
     @Override
     public void ViewEvents() {
@@ -34,7 +32,7 @@ public class Admin extends Events implements LoggedIn_Admin,conn{
     }
 
     @Override
-    public void AddEvent(String a,String b, String c,String d) {
+    public synchronized void AddEvent(String a,String b, String c,String d) {
         try{
             Connection conn=null;
             conn=connection.connectDB();
@@ -64,6 +62,7 @@ public class Admin extends Events implements LoggedIn_Admin,conn{
             s.executeUpdate("INSERT INTO `events_table`(eventname,ticketprice,eventdescription,numberofseatsavailable,eventrevenue,numberofseatsbooked) VALUE ('"+obe.event_name+"','"+obe.ticket_price+"','"+obe.event_description+"','"+obe.number_of_seats_available+"','"+revenue+"','"+noseatsbooked+"')");
             s.executeUpdate("INSERT INTO `table_user`(eventname,ticketprice,eventdescription) VALUE ('"+obe.event_name+"','"+obe.ticket_price+"','"+obe.event_description+"')");
             System.out.println("Event Successfully added");
+            wait();
         }catch(Exception e){
             System.out.println(e);
         }
@@ -71,7 +70,7 @@ public class Admin extends Events implements LoggedIn_Admin,conn{
     }
 
     @Override
-    public void EditEvent(int a, int choice1,String receive) {
+    public synchronized void EditEvent(int a, int choice1,String receive) {
         
         
 
@@ -105,6 +104,7 @@ public class Admin extends Events implements LoggedIn_Admin,conn{
                     String query2= "update  table_user set eventname='" + neweventname + "' where idno='" + idno + "'";
                     stmt.executeUpdate(query);
                     stmt.executeUpdate(query2);
+                    wait();
 
                 }
                 if(choi==2){
@@ -118,6 +118,7 @@ public class Admin extends Events implements LoggedIn_Admin,conn{
                     String query2="update  table_user set ticketprice='" + newticketprice + "' where idno='" + idno + "'";
                     stmt.executeUpdate(query);
                     stmt.executeUpdate(query2);
+                    wait();
 
                 }
                 if(choi==3){
@@ -131,6 +132,7 @@ public class Admin extends Events implements LoggedIn_Admin,conn{
                     String query2="update  table_user set eventdescription='" + neweventdescription + "' where idno='" + idno + "'";
                     stmt.executeUpdate(query);
                     stmt.executeUpdate(query2);
+                    wait();
 
                 }
                 if(choi==4){
@@ -142,6 +144,7 @@ public class Admin extends Events implements LoggedIn_Admin,conn{
                     Statement stmt=c.createStatement();
                     String query = "update  events_table set numberofseatsavailable='" + newseatsavailable + "' where idno='" + idno + "'";
                     stmt.executeUpdate(query);
+                    wait();
 
                 }
 //                else {
@@ -162,7 +165,7 @@ public class Admin extends Events implements LoggedIn_Admin,conn{
     
 
     @Override
-    public void DeleteEvent(int a) {
+    public synchronized void DeleteEvent(int a) {
         try {
             ViewEvents();
             System.out.println("Enter the id number of the event you want to delete");
@@ -177,6 +180,7 @@ public class Admin extends Events implements LoggedIn_Admin,conn{
             String query2="DELETE FROM `userdb`.`events_table` WHERE (`idno` = '"+did+"');";
             stmt.executeUpdate(query);
             stmt.executeUpdate(query2);
+            wait();
         }catch(Exception e){
             System.out.println(e);
         }
@@ -190,7 +194,7 @@ public class Admin extends Events implements LoggedIn_Admin,conn{
 //    }
 
     @Override
-    public void TrackRevenue(int a) {
+    public synchronized void TrackRevenue(int a) {
         try{
         	String s1="";
         	String s2="";
@@ -217,7 +221,7 @@ public class Admin extends Events implements LoggedIn_Admin,conn{
             Statement stmt = c.createStatement();
             String query = "update  events_table set eventrevenue='" + str + "' where idno='" + a + "'";
             stmt.executeUpdate(query);
-            
+            wait();
         }catch(Exception E){
             System.out.println(E);
         }

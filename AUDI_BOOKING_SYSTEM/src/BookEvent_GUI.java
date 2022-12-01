@@ -16,18 +16,18 @@ public class BookEvent_GUI {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		SwingUtilities.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					BookEvent_GUI window = new BookEvent_GUI();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+//	public static void main(String[] args) {
+//		SwingUtilities.invokeLater(new Runnable() {
+//			public void run() {
+//				try {
+//					BookEvent_GUI window = new BookEvent_GUI();
+//					window.frame.setVisible(true);
+//				} catch (Exception e) {
+//					e.printStackTrace();
+//				}
+//			}
+//		});
+//	}
 
 	/**
 	 * Create the application.
@@ -113,10 +113,16 @@ public class BookEvent_GUI {
 					public void run() {
 						try {
 							frame.dispose();
-							obc.BookEvent(Integer.parseInt(textField.getText()),Integer.parseInt(textField_1.getText()));
-							System.out.println("why");
-							
-							ShowEvents_GUI window = new ShowEvents_GUI();
+							Thread t=new Thread(){
+								public void run(){
+									obc.BookEvent(Integer.parseInt(textField.getText()),Integer.parseInt(textField_1.getText()));
+								}
+							};
+//							obc.BookEvent(Integer.parseInt(textField.getText()),Integer.parseInt(textField_1.getText()));
+//							System.out.println("why");
+							t.start();
+
+							LoggedInUserWindow_gui window = new LoggedInUserWindow_gui();
 							window.frame.setVisible(true);
 						} catch (Exception e) {
 							e.printStackTrace();

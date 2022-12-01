@@ -15,18 +15,18 @@ public class Track_Revenue_GUI {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		SwingUtilities.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Track_Revenue_GUI window = new Track_Revenue_GUI();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+//	public static void main(String[] args) {
+//		SwingUtilities.invokeLater(new Runnable() {
+//			public void run() {
+//				try {
+//					Track_Revenue_GUI window = new Track_Revenue_GUI();
+//					window.frame.setVisible(true);
+//				} catch (Exception e) {
+//					e.printStackTrace();
+//				}
+//			}
+//		});
+//	}
 
 	/**
 	 * Create the application.
@@ -103,13 +103,18 @@ SwingUtilities.invokeLater(new Runnable() {
 		JButton btnNewButton_1 = new JButton("Submit");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				Admin ob=new Admin();
-				ob.TrackRevenue(Integer.parseInt(textField.getText()));
+
 				SwingUtilities.invokeLater(new Runnable() {
 					public void run() {
 						try {
 							frame.dispose();
-							ViewEvents_Frame window = new ViewEvents_Frame();
+							Thread t=new Thread(){
+								public void run(){
+									Admin ob=new Admin();
+									ob.TrackRevenue(Integer.parseInt(textField.getText()));
+								}
+							};
+							LoggedInAdmin_gui window = new LoggedInAdmin_gui();
 							window.frame.setVisible(true);
 						} catch (Exception e) {
 							e.printStackTrace();

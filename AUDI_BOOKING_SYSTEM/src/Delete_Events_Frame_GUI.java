@@ -15,18 +15,18 @@ public class Delete_Events_Frame_GUI {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		SwingUtilities.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Delete_Events_Frame_GUI window = new Delete_Events_Frame_GUI();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+//	public static void main(String[] args) {
+//		SwingUtilities.invokeLater(new Runnable() {
+//			public void run() {
+//				try {
+//					Delete_Events_Frame_GUI window = new Delete_Events_Frame_GUI();
+//					window.frame.setVisible(true);
+//				} catch (Exception e) {
+//					e.printStackTrace();
+//				}
+//			}
+//		});
+//	}
 
 	/**
 	 * Create the application.
@@ -108,8 +108,14 @@ public class Delete_Events_Frame_GUI {
 					public void run() {
 						try {
 							frame.dispose();
-							obb.DeleteEvent(Integer.parseInt(textField.getText()));
-							ViewEvents_Frame window = new ViewEvents_Frame();
+							Thread t=new Thread(){
+								public void run(){
+									obb.DeleteEvent(Integer.parseInt(textField.getText()));
+								}
+							};
+							t.start();
+
+							LoggedInAdmin_gui window = new LoggedInAdmin_gui();
 							window.frame.setVisible(true);
 						} catch (Exception e) {
 							e.printStackTrace();

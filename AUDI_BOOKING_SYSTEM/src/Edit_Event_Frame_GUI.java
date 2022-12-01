@@ -18,18 +18,18 @@ public class Edit_Event_Frame_GUI {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		SwingUtilities.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Edit_Event_Frame_GUI window = new Edit_Event_Frame_GUI();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+//	public static void main(String[] args) {
+//		SwingUtilities.invokeLater(new Runnable() {
+//			public void run() {
+//				try {
+//					Edit_Event_Frame_GUI window = new Edit_Event_Frame_GUI();
+//					window.frame.setVisible(true);
+//				} catch (Exception e) {
+//					e.printStackTrace();
+//				}
+//			}
+//		});
+//	}
 
 	/**
 	 * Create the application.
@@ -124,33 +124,48 @@ EventQueue.invokeLater(new Runnable() {
 		springLayout.putConstraint(SpringLayout.EAST, btnNewButton_1_1, -10, SpringLayout.EAST, textField_1);
 		btnNewButton_1_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				
-				SwingUtilities.invokeLater(new Runnable() {
-					public void run() {
-						try {
-							
-							obb.EditEvent(Integer.parseInt(textField.getText()),obb.setChoice(1),textField_1.getText());
-							frame.dispose();
-							EventQueue.invokeLater(new Runnable() {
+
+
+
+
+				EventQueue.invokeLater(new Runnable() {
 								public void run() {
 									try {
-										ViewEvents_Frame window = new ViewEvents_Frame();
-										window.frame.setVisible(true);
+
+										frame.dispose();
+
 										System.out.println("Event name changed");
+										Thread t=new Thread(){public void run(){
+											obb.EditEvent(Integer.parseInt(textField.getText()),obb.setChoice(1),textField_1.getText());
+
+										}};
+										t.start();
+//										try {
+//											t.join();
+//
+//										}catch (Exception E){
+//											System.out.println(E);
+//										}
+										LoggedInAdmin_gui window = new LoggedInAdmin_gui();
+										window.frame.setVisible(true);
+
+
+
+
 									} catch (Exception e) {
 										e.printStackTrace();
 									}
 								}
 							});
+
 							
-							
-						} catch (Exception e) {
-//							e.printStackTrace();
-						}
+
 					}
+
+
+
 				});
-			}
-		});
+
 		frame.getContentPane().add(btnNewButton_1_1);
 		
 		JLabel lblNewLabel_2 = new JLabel("Enter the id number of the event you want to edit and hit submit only for the field you want to edit");
@@ -176,13 +191,19 @@ EventQueue.invokeLater(new Runnable() {
 		btnNewButton_1_1_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
-						try {
-							obb.EditEvent(Integer.parseInt(textField.getText()),obb.setChoice(2),textField_2.getText());
+
+
 							
 							SwingUtilities.invokeLater(new Runnable() {
 								public void run() {
 									try {frame.dispose();
-										ViewEvents_Frame window = new ViewEvents_Frame();
+										Thread t=new Thread(){
+											public void run(){
+												obb.EditEvent(Integer.parseInt(textField.getText()),obb.setChoice(2),textField_2.getText());
+											}
+										};
+										t.start();
+										LoggedInAdmin_gui window = new LoggedInAdmin_gui();
 										window.frame.setVisible(true);
 										System.out.println("Ticket price changed");
 									} catch (Exception e) {
@@ -191,9 +212,7 @@ EventQueue.invokeLater(new Runnable() {
 								}
 							});
 							
-						} catch (Exception e) {
-//							e.printStackTrace();
-						}
+
 					}
 				});
 		frame.getContentPane().add(btnNewButton_1_1_1);
@@ -225,8 +244,14 @@ EventQueue.invokeLater(new Runnable() {
 								public void run() {
 									try {
 										frame.dispose();
-										obb.EditEvent(Integer.parseInt(textField.getText()),obb.setChoice(3),textArea_1.getText());
-										ViewEvents_Frame window = new ViewEvents_Frame();
+										Thread t=new Thread(){
+											public void run(){
+												obb.EditEvent(Integer.parseInt(textField.getText()),obb.setChoice(3),textArea_1.getText());
+											}
+										};
+										t.start();
+
+										LoggedInAdmin_gui window = new LoggedInAdmin_gui();
 										window.frame.setVisible(true);
 										System.out.println("Event Description changed");
 									} catch (Exception e) {

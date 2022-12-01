@@ -51,7 +51,7 @@ public class Customer extends Admin implements LoggedIn_User{
 
     }
 //    @Override
-    public void BookEvent(int a,int seatno) {
+    public synchronized void BookEvent(int a,int seatno) {
 //        System.out.println("Enter the id number of the event that you want to book");
         
         try {
@@ -135,6 +135,7 @@ public class Customer extends Admin implements LoggedIn_User{
               ob.ViewEvents();
               stmt.executeUpdate(query2);
               stmt.executeUpdate(query3);
+              wait();
               
         	
         }catch(Exception E) {

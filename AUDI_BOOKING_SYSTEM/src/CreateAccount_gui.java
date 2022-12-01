@@ -118,16 +118,23 @@ public class CreateAccount_gui {
 				System.out.println(emailfield);
 				System.out.println(useridfield);
 				System.out.println(passwordfield);
-				try {
-					ob.CreateAccount(namefield, phonefield, emailfield, useridfield,passwordfield);
-				}catch(Exception e) {
-					System.out.println(e);
-				}
+
 //				ob.CreateAccount(namefield, phonefield, emailfield, useridfield,passwordfield);
 				frame.dispose();
 				SwingUtilities.invokeLater(new Runnable() {
 					public void run() {
 						try {
+							frame.dispose();
+							Thread t=new Thread(){
+								public void run(){
+									try {
+										ob.CreateAccount(namefield, phonefield, emailfield, useridfield,passwordfield);
+									}catch(Exception e) {
+										System.out.println(e);
+									}
+								}
+							};
+							t.start();
 							gui_audi window = new gui_audi();
 							window.frame.setVisible(true);
 						} catch (Exception e) {
@@ -148,6 +155,7 @@ public class CreateAccount_gui {
 					public void run() {
 						try {
 							frame.dispose();
+
 							gui_audi window = new gui_audi();
 							window.frame.setVisible(true);
 						} catch (Exception e) {

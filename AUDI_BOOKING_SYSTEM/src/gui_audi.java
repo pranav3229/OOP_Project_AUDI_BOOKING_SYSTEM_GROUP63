@@ -15,7 +15,11 @@ public class gui_audi {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
+	public static void main(String[] args) throws InterruptedException {
+//		newthread adminthread=new newthread("admin");
+//		newthread userthread=new newthread("user");
+//		adminthread.t.start();
+//		userthread.t.start();
 		SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -26,6 +30,8 @@ public class gui_audi {
 				}
 			}
 		});
+//		adminthread.t.join();
+//		userthread.t.join();
 	}
 
 	/**

@@ -19,18 +19,18 @@ public class Add_Events_Frame_GUI {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		SwingUtilities.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Add_Events_Frame_GUI window = new Add_Events_Frame_GUI();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+//	public static void main(String[] args) {
+//		SwingUtilities.invokeLater(new Runnable() {
+//			public void run() {
+//				try {
+//					Add_Events_Frame_GUI window = new Add_Events_Frame_GUI();
+//					window.frame.setVisible(true);
+//				} catch (Exception e) {
+//					e.printStackTrace();
+//				}
+//			}
+//		});
+//	}
 
 	/**
 	 * Create the application.
@@ -117,10 +117,20 @@ SwingUtilities.invokeLater(new Runnable() {
 					
 					public void run() {
 						try {
-							Admin obb=new Admin();
-							obb.AddEvent(textField.getText(), textField_1.getText(), textArea.getText(),textField_2.getText());
 							frame.dispose();
-							ViewEvents_Frame window = new ViewEvents_Frame();
+
+							Admin obb=new Admin();
+
+							Thread t= new Thread() {
+								public void run(){
+									obb.AddEvent(textField.getText(),textField_1.getText(),textArea.getText(),textField_2.getText());
+								}
+
+							};
+							t.start();
+
+
+							LoggedInAdmin_gui window = new LoggedInAdmin_gui();
 							window.frame.setVisible(true);
 						} catch (Exception e) {
 							e.printStackTrace();
