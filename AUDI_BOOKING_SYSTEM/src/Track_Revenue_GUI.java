@@ -114,6 +114,7 @@ SwingUtilities.invokeLater(new Runnable() {
 									ob.TrackRevenue(Integer.parseInt(textField.getText()));
 								}
 							};
+							t.start();
 							LoggedInAdmin_gui window = new LoggedInAdmin_gui();
 							window.frame.setVisible(true);
 						} catch (Exception e) {

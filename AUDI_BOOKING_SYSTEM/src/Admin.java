@@ -3,7 +3,7 @@ import imported_classes.DBTablePrinter;
 import java.util.*;
 import java.sql.*;
 
-public class Admin extends Events implements LoggedIn_Admin,conn{
+public class Admin extends Events implements LoggedIn_Admin{
 	int choi=-111;
 //    HashMap<Integer,String> al=new HashMap<>();
 //    static HashMap<Integer,String> al1=new HashMap<>();
@@ -75,9 +75,6 @@ public class Admin extends Events implements LoggedIn_Admin,conn{
         
 
         try {
-
-
-
                 ViewEvents();
                 System.out.println("Enter the event id number of the event you want to edit or press 0 to go back");
                 Scanner id = new Scanner(System.in);
@@ -86,11 +83,6 @@ public class Admin extends Events implements LoggedIn_Admin,conn{
                 conn = connection.connectDB();
                 Class.forName(driver);
                 Connection c = (Connection) DriverManager.getConnection(url, uname, pass);
-//                System.out.println("Press 1 if you want to edit the event name");
-//                System.out.println("Press 2 if you want to edit the ticket price");
-//                System.out.println("Press 3 if you want to edit the event description");
-//                System.out.println("Press 4 if you want to edit the number of seats available ***Warning doing so once users have booked seats will trash all such entries");
-//                System.out.println("Press 0 to go back");
                choi=choice1;
                 if (choi == 1) {
                     String neweventname = "";
@@ -98,14 +90,12 @@ public class Admin extends Events implements LoggedIn_Admin,conn{
                     while(neweventname.equals("")==true) {
                         neweventname = receive;
                     }
-
                     Statement stmt = c.createStatement();
                     String query = "update  events_table set eventname='" + neweventname + "' where idno='" + idno + "'";
                     String query2= "update  table_user set eventname='" + neweventname + "' where idno='" + idno + "'";
                     stmt.executeUpdate(query);
                     stmt.executeUpdate(query2);
                     wait();
-
                 }
                 if(choi==2){
                     String newticketprice="";
@@ -119,7 +109,6 @@ public class Admin extends Events implements LoggedIn_Admin,conn{
                     stmt.executeUpdate(query);
                     stmt.executeUpdate(query2);
                     wait();
-
                 }
                 if(choi==3){
                     String neweventdescription="";
@@ -133,7 +122,6 @@ public class Admin extends Events implements LoggedIn_Admin,conn{
                     stmt.executeUpdate(query);
                     stmt.executeUpdate(query2);
                     wait();
-
                 }
                 if(choi==4){
                     String newseatsavailable="";
@@ -145,22 +133,10 @@ public class Admin extends Events implements LoggedIn_Admin,conn{
                     String query = "update  events_table set numberofseatsavailable='" + newseatsavailable + "' where idno='" + idno + "'";
                     stmt.executeUpdate(query);
                     wait();
-
                 }
-//                else {
-//                    if(choi==0){
-//                        break;
-//                    }
-//                    else {
-//                        System.out.println(("Invalid choice"));
-//                    }
-//                }
-
             }catch(Exception e){
                 System.out.println(e);
             }
-
-
         }
     
 

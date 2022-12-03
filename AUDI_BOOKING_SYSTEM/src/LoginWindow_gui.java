@@ -10,6 +10,7 @@ public class LoginWindow_gui {
 	private JTextField textField;
 	private JPasswordField passwordField;
 	private JLabel label;
+	private JButton btnNewButton_1;
 
 	/**
 	 * Launch the application.
@@ -119,6 +120,29 @@ public class LoginWindow_gui {
 		springLayout.putConstraint(SpringLayout.NORTH, label, 38, SpringLayout.SOUTH, btnNewButton);
 		springLayout.putConstraint(SpringLayout.EAST, label, -193, SpringLayout.EAST, frame.getContentPane());
 		frame.getContentPane().add(label);
+		
+		btnNewButton_1 = new JButton("Back");
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				SwingUtilities.invokeLater(new Runnable() {
+					public void run() {
+						try {
+							frame.dispose();
+
+							gui_audi window = new gui_audi();
+							window.frame.setVisible(true);
+						} catch (Exception e) {
+							e.printStackTrace();
+						}
+					}
+				});
+			}
+		});
+		springLayout.putConstraint(SpringLayout.NORTH, btnNewButton_1, -75, SpringLayout.SOUTH, frame.getContentPane());
+		springLayout.putConstraint(SpringLayout.WEST, btnNewButton_1, 49, SpringLayout.EAST, label);
+		springLayout.putConstraint(SpringLayout.SOUTH, btnNewButton_1, -52, SpringLayout.SOUTH, frame.getContentPane());
+		springLayout.putConstraint(SpringLayout.EAST, btnNewButton_1, 125, SpringLayout.EAST, label);
+		frame.getContentPane().add(btnNewButton_1);
 	}
 
 }

@@ -265,7 +265,7 @@ EventQueue.invokeLater(new Runnable() {
 				});
 		frame.getContentPane().add(btnNewButton_1_1_1_1);
 		
-		JLabel lblNewLabel_5 = new JLabel("Note: You can edit only one field at a time");
+		JLabel lblNewLabel_5 = new JLabel("Note: Yu can edit only one field at a time");
 		springLayout.putConstraint(SpringLayout.WEST, lblNewLabel_5, 297, SpringLayout.WEST, frame.getContentPane());
 		springLayout.putConstraint(SpringLayout.SOUTH, lblNewLabel_5, -38, SpringLayout.SOUTH, frame.getContentPane());
 		frame.getContentPane().add(lblNewLabel_5);

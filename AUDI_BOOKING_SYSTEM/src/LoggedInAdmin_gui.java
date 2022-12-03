@@ -3,14 +3,10 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.SpringLayout;
 
-import imported_classes.CustomOutputStream;
-
 import javax.swing.JButton;
 import javax.swing.JLabel;
-import javax.swing.JTextArea;
 
 import java.awt.event.ActionListener;
-import java.io.PrintStream;
 import java.awt.event.ActionEvent;
 import java.awt.Component;
 
@@ -167,6 +163,7 @@ public class LoggedInAdmin_gui {
 					public void run() {
 						try {
 							frame.dispose();
+							
 							Track_Revenue_GUI window = new Track_Revenue_GUI();
 							window.frame.setVisible(true);
 						} catch (Exception e) {
